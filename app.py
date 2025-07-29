@@ -65,27 +65,13 @@ st.markdown("""
     h1 {
         color: #B22222; /* Màu đỏ nổi bật hơn (FireBrick) */
         text-align: center;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem; /* Tăng khoảng cách dưới tiêu đề */
         font-size: 3em;
         font-weight: 700;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    .upload-label {
-        font-size: 24px !important;
-        font-weight: 900 !important;
-        color: #c62828 !important;
-        text-align: center !important;
-        line-height: 1.4 !important;
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .centered-text {
-        text-align: center;
-        font-size: 1.2em;
-        margin-bottom: 1.5rem;
-    }
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
@@ -94,15 +80,30 @@ st.markdown("""
         background-color: #e6ffe6;
         transition: all 0.3s ease-in-out;
         min-height: 150px; /* Thêm chiều cao tối thiểu */
+        position: relative; /* Cần thiết để định vị pseudo-element */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
 
-    /* --- CSS ĐỂ ẨN CHỮ TIẾNG ANH --- */
+    /* Ẩn hoàn toàn nội dung mặc định của streamlit (icon, text, button) */
     .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
         display: none;
+    }
+
+    /* Thêm văn bản tùy chỉnh vào bên trong khung */
+    .stFileUploader::before {
+        content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
+        display: block;
+        color: #c62828; /* Màu đỏ cho nổi bật */
+        font-weight: 900;
+        font-size: 1.2rem;
+        pointer-events: none; /* Để có thể click xuyên qua chữ */
+        padding: 0 20px; /* Thêm padding để chữ không bị sát viền */
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
@@ -161,13 +162,7 @@ st.markdown("""
 # --- Giao diện Streamlit ---
 st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
 
-# Sử dụng markdown để tạo nhãn tùy chỉnh, to, đậm và nổi bật
-st.markdown('<p class="upload-label">Bấm vào khung bên dưới để chụp hoặc tải ảnh lá cà chua lên</p>', unsafe_allow_html=True)
-# Thêm icon bàn tay 👇 ở dòng riêng, căn giữa và bên dưới dòng chữ trên
-st.markdown('<p style="text-align: center; font-size: 1.5em; margin-top: -10px; margin-bottom: 10px;">👇</p>', unsafe_allow_html=True)
-
-
-# Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh ở trên
+# Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
 tep_anh = st.file_uploader(
     label="Tải ảnh lên", # Dòng chữ này sẽ không hiển thị
     type=["jpg", "jpeg", "png"],
