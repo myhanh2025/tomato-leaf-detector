@@ -107,7 +107,7 @@ st.markdown("""
         z-index: 1;
     }
 
-    /* Khi có file được tải lên, ẩn văn bản tùy chỉnh đi */
+    /* Khi có file được tải lên, thay đổi văn bản hướng dẫn */
     .stFileUploader:has([data-testid="stFileUploaderFile"])::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh khác';
     }
@@ -115,6 +115,13 @@ st.markdown("""
     /* Ẩn các hướng dẫn mặc định của Streamlit */
     .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] {
         display: none !important;
+    }
+    
+    /* Làm cho dropzone và TẤT CẢ các phần tử con của nó trong suốt */
+    .stFileUploader [data-testid="stFileUploaderDropzone"],
+    .stFileUploader [data-testid="stFileUploaderDropzone"] * {
+        background: transparent !important;
+        border: none !important;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
@@ -136,16 +143,11 @@ st.markdown("""
         width: 100%;
         padding: 1rem;
         margin-top: 3.5rem; /* Đẩy tên file xuống dưới để không chồng chéo */
-        background: transparent !important;
         font-size: 0.9em;
         color: #333;
+        z-index: 0; /* Đảm bảo nó nằm dưới văn bản hướng dẫn */
     }
     
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
-        background: transparent !important;
-        border: none !important;
-        width: 100%; /* Đảm bảo section chiếm toàn bộ chiều rộng */
-    }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
     .stImage {
