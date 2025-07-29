@@ -64,7 +64,6 @@ st.markdown("""
     }
     h1 {
         color: #B22222; /* Màu đỏ nổi bật hơn (FireBrick) */
-        text-align: center;
         margin-bottom: 2rem; /* Tăng khoảng cách dưới tiêu đề */
         font-size: 3em;
         font-weight: 700;
@@ -83,28 +82,28 @@ st.markdown("""
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease-in-out;
-        overflow: hidden; /* Ngăn các phần tử con tràn ra ngoài */
+        overflow: hidden;
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
 
-    /* Thêm văn bản tùy chỉnh vào khung uploader, luôn hiển thị */
+    /* Thêm văn bản tùy chỉnh vào khung uploader */
     .stFileUploader::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh lên';
         display: block;
         position: absolute;
-        top: 2.5rem; /* Vị trí ở phía trên */
+        top: 35%; /* Đặt vị trí ở 35% từ trên xuống */
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         color: #c62828;
         font-weight: 900;
         font-size: 1.2rem;
         pointer-events: none;
         text-align: center;
         width: 90%;
-        z-index: 1;
+        z-index: 2; /* Lớp trên cùng */
     }
 
     /* Khi có file được tải lên, thay đổi văn bản hướng dẫn */
@@ -133,19 +132,23 @@ st.markdown("""
         height: 100%;
         opacity: 0;
         cursor: pointer;
+        z-index: 1; /* Nằm dưới văn bản nhưng trên tên file */
     }
 
-    /* Đảm bảo tên file đã tải lên nằm ở dưới và không có nền */
+    /* Định vị tên file đã tải lên ở phía dưới */
     .stFileUploader [data-testid="stFileUploaderFile"] {
+        position: absolute;
+        bottom: 15%; /* Đặt vị trí ở 15% từ dưới lên */
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 1rem;
-        margin-top: 3.5rem; /* Đẩy tên file xuống dưới để không chồng chéo */
+        padding: 0 1rem;
         font-size: 0.9em;
         color: #333;
-        z-index: 0; /* Đảm bảo nó nằm dưới văn bản hướng dẫn */
+        z-index: 0; /* Lớp dưới cùng */
     }
     
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
@@ -203,7 +206,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-st.markdown("<h1>🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃</h1>", unsafe_allow_html=True)
+st.markdown('<div style="text-align: center;"><h1>🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃</h1></div>', unsafe_allow_html=True)
+
 
 # Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
 tep_anh = st.file_uploader(
