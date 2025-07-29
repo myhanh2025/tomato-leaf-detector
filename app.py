@@ -79,19 +79,20 @@ st.markdown("""
         text-align: center;
         background-color: #e6ffe6;
         transition: all 0.3s ease-in-out;
-        min-height: 150px; /* Thêm chiều cao tối thiểu */
-        position: relative; /* Cần thiết để định vị pseudo-element */
+        min-height: 150px;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer; /* Thêm con trỏ chuột để cho biết có thể nhấp vào */
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
 
-    /* Ẩn hoàn toàn nội dung mặc định của streamlit (icon, text, button) */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
+    /* Ẩn tất cả các thành phần con trực tiếp của dropzone */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] > * {
         display: none;
     }
 
@@ -99,11 +100,13 @@ st.markdown("""
     .stFileUploader::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
         display: block;
-        color: #c62828; /* Màu đỏ cho nổi bật */
+        color: #c62828;
         font-weight: 900;
         font-size: 1.2rem;
-        pointer-events: none; /* Để có thể click xuyên qua chữ */
-        padding: 0 20px; /* Thêm padding để chữ không bị sát viền */
+        pointer-events: none; /* Quan trọng: để có thể click xuyên qua chữ */
+        text-align: center;
+        width: 100%;
+        padding: 0 20px;
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
@@ -121,20 +124,20 @@ st.markdown("""
         padding: 18px;
         margin-top: 20px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-        font-size: 1.4em !important; /* Tăng kích thước chữ của kết quả */
+        font-size: 1.4em !important;
         line-height: 1.6;
     }
     .stSuccess {
         background-color: #d4edda;
         color: #155724;
         border-left: 6px solid #28a745;
-        font-weight: 700 !important; /* Làm chữ đậm hơn */
+        font-weight: 700 !important;
     }
     .stInfo {
         background-color: #d1ecf1;
         color: #0c5460;
         border-left: 6px solid #17a2b8;
-        font-weight: 500 !important; /* Cũng làm chữ đậm hơn */
+        font-weight: 500 !important;
     }
     /* === KẾT THÚC CSS CẬP NHẬT === */
 
@@ -160,7 +163,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA �")
+st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
 
 # Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
 tep_anh = st.file_uploader(
