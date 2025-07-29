@@ -91,7 +91,7 @@ st.markdown("""
     }
 
     /* Ẩn hoàn toàn nội dung mặc định của streamlit (icon, text, button) */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
         display: none;
     }
 
