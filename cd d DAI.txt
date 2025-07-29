@@ -1,0 +1,6 @@
+cd /d D:\AI
+streamlit run app.py
+
+
+
+
