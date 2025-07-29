@@ -71,7 +71,7 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI MỚI NHẤT) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI CUỐI CÙNG) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
