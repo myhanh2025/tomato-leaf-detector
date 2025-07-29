@@ -64,98 +64,70 @@ st.markdown("""
     }
     h1 {
         color: #B22222; /* Màu đỏ nổi bật hơn (FireBrick) */
-        margin-bottom: 2rem; /* Tăng khoảng cách dưới tiêu đề */
+        text-align: center;
+        margin-bottom: 1rem;
         font-size: 3em;
         font-weight: 700;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* Ẩn biểu tượng link mặc định của Streamlit trong tiêu đề */
-    h1 a {
-        display: none !important;
+    .upload-label {
+        font-size: 24px !important;
+        font-weight: 900 !important;
+        color: #c62828 !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .centered-text {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 1.5rem;
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN HOÀN CHỈNH) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
+        padding: 20px;
+        text-align: center;
         background-color: #e6ffe6;
-        min-height: 150px;
-        position: relative;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         transition: all 0.3s ease-in-out;
-        overflow: hidden;
+        min-height: 150px; /* Đặt chiều cao tối thiểu để khung không bị xẹp */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative; /* Cần thiết để định vị văn bản tùy chỉnh */
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
 
-    /* Thêm văn bản tùy chỉnh vào khung uploader */
+    /* Ẩn toàn bộ nội dung mặc định (icon, text, button) bên trong dropzone */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
+        display: none;
+    }
+    
+    /* Thêm văn bản tùy chỉnh vào bên trong khung upload */
     .stFileUploader::before {
-        content: 'Bấm vào đây để chụp hoặc tải ảnh lên';
+        content: 'Kéo và thả tệp vào đây\\A(Giới hạn 200MB • JPG, JPEG, PNG)';
+        white-space: pre-wrap; /* Cho phép xuống dòng với \\A */
         display: block;
         position: absolute;
-        top: 35%; /* Đặt vị trí ở 35% từ trên xuống */
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: #c62828;
-        font-weight: 900;
-        font-size: 1.2rem;
-        pointer-events: none;
-        text-align: center;
-        width: 90%;
-        z-index: 2; /* Lớp trên cùng */
-    }
-
-    /* Khi có file được tải lên, thay đổi văn bản hướng dẫn */
-    .stFileUploader:has([data-testid="stFileUploaderFile"])::before {
-        content: 'Bấm vào đây để chụp hoặc tải ảnh khác';
-    }
-
-    /* Ẩn các hướng dẫn mặc định của Streamlit */
-    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] {
-        display: none !important;
-    }
-    
-    /* Làm cho dropzone và TẤT CẢ các phần tử con của nó trong suốt */
-    .stFileUploader [data-testid="stFileUploaderDropzone"],
-    .stFileUploader [data-testid="stFileUploaderDropzone"] * {
-        background: transparent !important;
-        border: none !important;
-    }
-
-    /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 1; /* Nằm dưới văn bản nhưng trên tên file */
-    }
-
-    /* Định vị tên file đã tải lên ở phía dưới */
-    .stFileUploader [data-testid="stFileUploaderFile"] {
-        position: absolute;
-        bottom: 15%; /* Đặt vị trí ở 15% từ dưới lên */
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        pointer-events: none; /* Đảm bảo văn bản không cản trở việc click */
+        color: #555;
+        font-weight: 500;
+        font-size: 1.1rem;
         width: 100%;
         padding: 0 1rem;
-        font-size: 0.9em;
-        color: #333;
-        z-index: 0; /* Lớp dưới cùng */
+        line-height: 1.5;
     }
-    
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
     .stImage {
@@ -172,20 +144,20 @@ st.markdown("""
         padding: 18px;
         margin-top: 20px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-        font-size: 1.4em !important;
+        font-size: 1.4em !important; /* Tăng kích thước chữ của kết quả */
         line-height: 1.6;
     }
     .stSuccess {
         background-color: #d4edda;
         color: #155724;
         border-left: 6px solid #28a745;
-        font-weight: 700 !important;
+        font-weight: 700 !important; /* Làm chữ đậm hơn */
     }
     .stInfo {
         background-color: #d1ecf1;
         color: #0c5460;
         border-left: 6px solid #17a2b8;
-        font-weight: 500 !important;
+        font-weight: 500 !important; /* Cũng làm chữ đậm hơn */
     }
     /* === KẾT THÚC CSS CẬP NHẬT === */
 
@@ -211,11 +183,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-# Sử dụng markdown với style inline để đảm bảo tiêu đề được canh giữa
-st.markdown("<h1 style='text-align: center;'>🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃</h1>", unsafe_allow_html=True)
+st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
+st.markdown('<div style="height: 4rem;"></div>', unsafe_allow_html=True) # Thêm khoảng trống
 
 
-# Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
+# Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh ở trên
 tep_anh = st.file_uploader(
     label="Tải ảnh lên", # Dòng chữ này sẽ không hiển thị
     type=["jpg", "jpeg", "png"],
