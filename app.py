@@ -71,11 +71,11 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI HOÀN CHỈNH) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI MỚI NHẤT) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
-        background-color: #e6ffe6;
+        background-color: #e6ffe6 !important;
         min-height: 150px;
         position: relative;
         padding: 0;
@@ -86,23 +86,19 @@ st.markdown("""
     }
     .stFileUploader:hover {
         border-color: #28a745;
-        background-color: #d4ffd4;
+        background-color: #d4ffd4 !important;
     }
 
-    /* Ẩn container chứa văn bản và icon mặc định */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] div[data-testid="stFileUploaderDropzoneInstructions"] {
-        display: none !important;
-    }
-
-    /* Loại bỏ nền trắng và viền của thẻ section bên trong */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
+    /* Làm cho toàn bộ dropzone và các phần tử con của nó trong suốt */
+    .stFileUploader [data-testid="stFileUploaderDropzone"],
+    .stFileUploader [data-testid="stFileUploaderDropzone"] * {
         background: transparent !important;
         border: none !important;
     }
 
-    /* Thêm quy tắc này để đảm bảo nền của thẻ div con cũng trong suốt */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section > div {
-        background: transparent !important;
+    /* Ẩn văn bản và icon mặc định */
+    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] {
+        display: none !important;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
