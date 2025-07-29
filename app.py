@@ -71,11 +71,11 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI CUỐI CÙNG) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN HOÀN CHỈNH) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
-        background-color: #e6ffe6 !important;
+        background-color: #e6ffe6;
         min-height: 150px;
         position: relative;
         padding: 0;
@@ -83,34 +83,38 @@ st.markdown("""
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease-in-out;
+        overflow: hidden; /* Ngăn các phần tử con tràn ra ngoài */
     }
     .stFileUploader:hover {
         border-color: #28a745;
-        background-color: #d4ffd4 !important;
+        background-color: #d4ffd4;
     }
 
-    /* Làm cho toàn bộ dropzone và các phần tử con của nó trong suốt */
-    .stFileUploader [data-testid="stFileUploaderDropzone"],
-    .stFileUploader [data-testid="stFileUploaderDropzone"] * {
-        background: transparent !important;
-        border: none !important;
-    }
-
-    /* Ẩn văn bản và icon mặc định bên trong container hướng dẫn */
-    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] p,
-    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] svg {
-        display: none;
-    }
-
-    /* Thêm văn bản tùy chỉnh vào container hướng dẫn */
-    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"]::before {
+    /* Thêm văn bản tùy chỉnh vào khung uploader */
+    .stFileUploader::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
         display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         color: #c62828;
         font-weight: 900;
         font-size: 1.2rem;
+        pointer-events: none;
         text-align: center;
-        width: 100%;
+        width: 90%;
+        z-index: 1; /* Đảm bảo văn bản ở trên các thành phần khác */
+    }
+
+    /* Khi có file được tải lên, ẩn văn bản tùy chỉnh đi */
+    .stFileUploader:has([data-testid="stFileUploaderFile"])::before {
+        display: none;
+    }
+
+    /* Ẩn các hướng dẫn mặc định của Streamlit */
+    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] {
+        display: none !important;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
@@ -122,6 +126,21 @@ st.markdown("""
         height: 100%;
         opacity: 0;
         cursor: pointer;
+    }
+
+    /* Đảm bảo tên file đã tải lên được hiển thị đúng cách và không có nền */
+    .stFileUploader [data-testid="stFileUploaderFile"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        background: transparent !important;
+    }
+    
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
+        background: transparent !important;
+        border: none !important;
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
