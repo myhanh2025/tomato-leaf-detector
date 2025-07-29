@@ -64,7 +64,6 @@ st.markdown("""
     }
     h1 {
         color: #B22222; /* Màu đỏ nổi bật hơn (FireBrick) */
-        text-align: center; /* Canh giữa tiêu đề */
         margin-bottom: 2rem; /* Tăng khoảng cách dưới tiêu đề */
         font-size: 3em;
         font-weight: 700;
@@ -212,8 +211,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-# Sử dụng st.title() để tạo tiêu đề, CSS sẽ tự động canh giữa và ẩn link
-st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
+# Sử dụng markdown với style inline để đảm bảo tiêu đề được canh giữa
+st.markdown("<h1 style='text-align: center;'>🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃</h1>", unsafe_allow_html=True)
 
 
 # Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
