@@ -71,14 +71,14 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI CUỐI CÙNG) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI HOÀN CHỈNH) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
         background-color: #e6ffe6;
         min-height: 150px;
         position: relative;
-        padding: 0; /* Quan trọng: Xóa padding để nút con có thể lấp đầy */
+        padding: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -89,9 +89,15 @@ st.markdown("""
         background-color: #d4ffd4;
     }
 
-    /* Ẩn container chứa văn bản và icon mặc định một cách triệt để */
+    /* Ẩn container chứa văn bản và icon mặc định */
     .stFileUploader [data-testid="stFileUploaderDropzone"] div[data-testid="stFileUploaderDropzoneInstructions"] {
         display: none !important;
+    }
+
+    /* Loại bỏ nền trắng và viền của thẻ section bên trong */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
+        background: none !important;
+        border: none !important;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
@@ -101,7 +107,7 @@ st.markdown("""
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0; /* Làm cho nút hoàn toàn trong suốt */
+        opacity: 0;
         cursor: pointer;
     }
 
