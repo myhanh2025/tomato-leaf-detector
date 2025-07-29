@@ -96,7 +96,7 @@ st.markdown("""
 
     /* Loại bỏ nền trắng và viền của thẻ section bên trong */
     .stFileUploader [data-testid="stFileUploaderDropzone"] section {
-        background: none !important;
+        background: transparent !important;
         border: none !important;
     }
 
