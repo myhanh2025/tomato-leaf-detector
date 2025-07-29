@@ -71,15 +71,14 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
         background-color: #e6ffe6;
         min-height: 150px;
         position: relative;
-        padding: 0; /* Xóa padding để nút con có thể lấp đầy */
-        overflow: hidden; /* Ẩn các phần tử con bị tràn ra ngoài */
+        padding: 0; /* Quan trọng: Xóa padding để nút con có thể lấp đầy */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -90,13 +89,12 @@ st.markdown("""
         background-color: #d4ffd4;
     }
 
-    /* Ẩn văn bản và biểu tượng mặc định */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] p,
-    .stFileUploader [data-testid="stFileUploaderDropzone"] svg {
+    /* Ẩn container chứa văn bản và icon mặc định */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section > div:first-of-type {
         display: none;
     }
 
-    /* Tạo một lớp phủ vô hình từ nút bấm để bắt sự kiện click */
+    /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
     .stFileUploader [data-testid="stFileUploaderDropzone"] button {
         position: absolute;
         top: 0;
@@ -104,10 +102,10 @@ st.markdown("""
         width: 100%;
         height: 100%;
         opacity: 0; /* Làm cho nút hoàn toàn trong suốt */
-        cursor: pointer; /* Đảm bảo con trỏ chuột là dạng bàn tay */
+        cursor: pointer;
     }
 
-    /* Thêm văn bản tùy chỉnh của bạn lên trên */
+    /* Thêm văn bản tùy chỉnh của bạn lên trên cùng */
     .stFileUploader::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
         position: absolute;
@@ -117,10 +115,9 @@ st.markdown("""
         color: #c62828;
         font-weight: 900;
         font-size: 1.2rem;
-        pointer-events: none; /* Quan trọng: để click có thể đi xuyên qua chữ */
+        pointer-events: none; /* Quan trọng: để click có thể "xuyên" qua chữ */
         text-align: center;
-        width: 100%;
-        padding: 0 20px;
+        width: 90%;
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
