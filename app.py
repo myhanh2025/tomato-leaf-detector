@@ -71,7 +71,7 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
-    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI) --- */
+    /* --- CSS ĐỂ TÙY CHỈNH KHUNG UPLOAD (PHIÊN BẢN SỬA LỖI CUỐI CÙNG) --- */
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
@@ -89,9 +89,9 @@ st.markdown("""
         background-color: #d4ffd4;
     }
 
-    /* Ẩn container chứa văn bản và icon mặc định */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section > div:first-of-type {
-        display: none;
+    /* Ẩn container chứa văn bản và icon mặc định một cách triệt để */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] div[data-testid="stFileUploaderDropzoneInstructions"] {
+        display: none !important;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
