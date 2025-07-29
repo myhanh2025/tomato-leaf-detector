@@ -75,35 +75,49 @@ st.markdown("""
     .stFileUploader {
         border: 2px dashed #a7d9b5;
         border-radius: 10px;
-        padding: 20px;
-        text-align: center;
         background-color: #e6ffe6;
-        transition: all 0.3s ease-in-out;
         min-height: 150px;
         position: relative;
+        padding: 0; /* Xóa padding để nút con có thể lấp đầy */
+        overflow: hidden; /* Ẩn các phần tử con bị tràn ra ngoài */
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer; /* Thêm con trỏ chuột để cho biết có thể nhấp vào */
+        transition: all 0.3s ease-in-out;
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
 
-    /* Ẩn tất cả các thành phần con trực tiếp của dropzone */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] > * {
+    /* Ẩn văn bản và biểu tượng mặc định */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] p,
+    .stFileUploader [data-testid="stFileUploaderDropzone"] svg {
         display: none;
     }
 
-    /* Thêm văn bản tùy chỉnh vào bên trong khung */
+    /* Tạo một lớp phủ vô hình từ nút bấm để bắt sự kiện click */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* Làm cho nút hoàn toàn trong suốt */
+        cursor: pointer; /* Đảm bảo con trỏ chuột là dạng bàn tay */
+    }
+
+    /* Thêm văn bản tùy chỉnh của bạn lên trên */
     .stFileUploader::before {
         content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
-        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         color: #c62828;
         font-weight: 900;
         font-size: 1.2rem;
-        pointer-events: none; /* Quan trọng: để có thể click xuyên qua chữ */
+        pointer-events: none; /* Quan trọng: để click có thể đi xuyên qua chữ */
         text-align: center;
         width: 100%;
         padding: 0 20px;
