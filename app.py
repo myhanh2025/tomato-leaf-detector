@@ -203,7 +203,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
+st.markdown("<h1>🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃</h1>", unsafe_allow_html=True)
 
 # Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
 tep_anh = st.file_uploader(
