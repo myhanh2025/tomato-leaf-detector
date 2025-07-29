@@ -14,6 +14,7 @@ load_dotenv()
 # --- Cấu hình mô hình Roboflow ---
 # LƯU Ý QUAN TRỌNG: ROBOFLOW_API_KEY được lấy từ biến môi trường (từ file .env khi chạy cục bộ,
 # hoặc từ Streamlit Secrets khi triển khai lên Streamlit Cloud).
+# Bạn đã cung cấp API Key: rSUzaeMGYrBA449orJYK
 KHOA_API = os.getenv("ROBOFLOW_API_KEY")
 
 TEN_MO_HINH = "tomato-leaf-diseases-lmem9"
@@ -93,19 +94,22 @@ st.markdown("""
         text-align: center;
         background-color: #e6ffe6;
         transition: all 0.3s ease-in-out;
-        min-height: 150px; /* Thêm chiều cao tối thiểu */
     }
     .stFileUploader:hover {
         border-color: #28a745;
         background-color: #d4ffd4;
     }
-
-    /* --- CSS ĐỂ ẨN CHỮ TIẾNG ANH --- */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
-        display: none;
+    .stFileUploader > div > button {
+        background-color: #28a745;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
     }
-    /* --- KẾT THÚC CSS TÙY CHỈNH --- */
-
+    .stFileUploader > div > button:hover {
+        background-color: #218838;
+    }
     .stImage {
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
