@@ -91,7 +91,7 @@ st.markdown("""
     }
 
     /* Ẩn hoàn toàn nội dung mặc định của streamlit (icon, text, button) */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
         display: none;
     }
 
@@ -160,7 +160,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Giao diện Streamlit ---
-st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA 🍃")
+st.title("🍅 ỨNG DỤNG AI NHẬN DIỆN BỆNH QUA LÁ CÀ CHUA �")
 
 # Ẩn nhãn mặc định của file_uploader và sử dụng nhãn tùy chỉnh qua CSS
 tep_anh = st.file_uploader(
