@@ -100,6 +100,11 @@ st.markdown("""
         border: none !important;
     }
 
+    /* Thêm quy tắc này để đảm bảo nền của thẻ div con cũng trong suốt */
+    .stFileUploader [data-testid="stFileUploaderDropzone"] section > div {
+        background: transparent !important;
+    }
+
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
     .stFileUploader [data-testid="stFileUploaderDropzone"] button {
         position: absolute;
