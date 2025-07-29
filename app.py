@@ -101,8 +101,7 @@ st.markdown("""
     }
 
     /* --- CSS ĐỂ ẨN CHỮ TIẾNG ANH --- */
-    /* Đoạn mã này sẽ ẩn cả văn bản và nút "Browse files" mặc định */
-    .stFileUploader [data-testid="stFileUploaderDropzone"] section {
+    .stFileUploader [data-testid="stFileUploaderDropzone"] > div {
         display: none;
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
