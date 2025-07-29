@@ -96,9 +96,21 @@ st.markdown("""
         border: none !important;
     }
 
-    /* Ẩn văn bản và icon mặc định */
-    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] {
-        display: none !important;
+    /* Ẩn văn bản và icon mặc định bên trong container hướng dẫn */
+    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] p,
+    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"] svg {
+        display: none;
+    }
+
+    /* Thêm văn bản tùy chỉnh vào container hướng dẫn */
+    .stFileUploader [data-testid="stFileUploaderDropzoneInstructions"]::before {
+        content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
+        display: block;
+        color: #c62828;
+        font-weight: 900;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
     }
 
     /* Biến nút "Browse files" thành lớp phủ vô hình bao trùm toàn bộ khu vực */
@@ -110,21 +122,6 @@ st.markdown("""
         height: 100%;
         opacity: 0;
         cursor: pointer;
-    }
-
-    /* Thêm văn bản tùy chỉnh của bạn lên trên cùng */
-    .stFileUploader::before {
-        content: 'Bấm vào đây để chụp hoặc tải ảnh lá cà chua lên';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #c62828;
-        font-weight: 900;
-        font-size: 1.2rem;
-        pointer-events: none; /* Quan trọng: để click có thể "xuyên" qua chữ */
-        text-align: center;
-        width: 90%;
     }
     /* --- KẾT THÚC CSS TÙY CHỈNH --- */
 
