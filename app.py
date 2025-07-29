@@ -92,7 +92,7 @@ st.markdown("""
 
     /* Thêm văn bản tùy chỉnh vào khung uploader, luôn hiển thị */
     .stFileUploader::before {
-        content: 'Bấm vào đây để chụp hoặc tải ảnh khác';
+        content: 'Bấm vào đây để chụp hoặc tải ảnh lên';
         display: block;
         position: absolute;
         top: 2.5rem; /* Vị trí ở phía trên */
@@ -105,6 +105,11 @@ st.markdown("""
         text-align: center;
         width: 90%;
         z-index: 1;
+    }
+
+    /* Khi có file được tải lên, ẩn văn bản tùy chỉnh đi */
+    .stFileUploader:has([data-testid="stFileUploaderFile"])::before {
+        content: 'Bấm vào đây để chụp hoặc tải ảnh khác';
     }
 
     /* Ẩn các hướng dẫn mặc định của Streamlit */
